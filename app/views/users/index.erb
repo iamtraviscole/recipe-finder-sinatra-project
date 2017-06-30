@@ -1,0 +1,13 @@
+<h1>Your Recipes</h1>
+<ul>
+<%@user_recipes.each do |user_recipe|%>
+  <li><a href="/recipes/<%=user_recipe.id%>/edit">user_recipe</a></li>
+<%end%>
+</ul>
+
+<h1>Your Ingredients</h1>
+<ul>
+<%@user_ingredients.each do |user_ingredient|%>
+  <li><a href="/ingredients/<%=user_ingredient.id%>/edit">user_ingredient</a></li>
+<%end%>
+</ul>

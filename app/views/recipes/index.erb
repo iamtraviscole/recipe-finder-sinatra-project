@@ -1,0 +1,7 @@
+<h1>Your Recipes</h1>
+
+<ul>
+<%@user_recipes.each do |user_recipe|%>
+  <li><a href="/recipes/<%=user_recipe.id%>">user_recipes</a></li>
+<%end%>
+</ul>

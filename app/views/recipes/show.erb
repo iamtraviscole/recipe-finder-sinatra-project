@@ -1,0 +1,14 @@
+<h1><%=@recipe.name%></h1>
+
+<h2>Difficulty</h2>
+<p><%=@recipe.difficulty%></p>
+<h2>Cook Time</h2>
+<p><%=@recipe.cook_time%></p>
+<h2>Ingredients</h2>
+<ul>
+<%@recipe.ingredients.each do |ingredient|%>
+  <li><%=ingredient%></li>
+<%end%>
+</ul>
+<h2>Instructions</h2>
+<p><%=@recipe.instructions%></p>
