@@ -1,14 +1,49 @@
 <h1>New Recipe</h1>
 
 <form action="/recipes" method="post">
-  <label for="recipe_name"></label>
-  <input type="text" name="name" id="recipe_name">
-  <label for="recipe_difficulty"></label>
-  <input type="text" name="difficulty" id="recipe_difficulty">
-  <label for="recipe_instructions"></label>
-  <input type="text" name="instructions" id="recipe_instructions">
-  <label for="recipe_cook_time"></label>
-  <input type="number" name="cook_time" id="recipe_cook_time">
+  <h3><label for="recipe_name">Name</label></h3>
+  <input type="text" name="recipe[name]" id="recipe_name">
+
+  <h3><label for="recipe_difficulty">Difficulty</label></h3>
+  <input type="text" name="recipe[difficulty]" id="recipe_difficulty">
+
+  <h3><label for="recipe_cook_time">Cook Time (in minutes)</label></h3>
+  <input type="number" name="recipe[cook_time]" id="recipe_cook_time">
+
+  <h3><label for="recipe_ingredients">Select Ingredients</label></h3>
+  <ul>
+  <% @ingredients.each do |ingredient| %>
+    <li><input type="checkbox" name="recipe[ingredients][]" id="recipe_ingredients" value="<%=ingredient.id%>"><%= ingredient.name %></li>
+  <% end %>
+  </ul>
+
+  <h3>And/or, Create Ingredients</h3>
+  <label for="recipe_create_ingredients">Names:</label>
+  <input type="text" name="ingredients[]" id="recipe_create_ingredients">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+
+  <h3><label for="recipe_instructions">Instructions</label></h3>
+  <textarea rows="10" cols="30" name="instructions" id="recipe_instructions"></textarea>
+
   <br>
   <input type="submit" value="Create New Recipe">
 </form>
+
+
+<!-- params = {
+  recipe => {
+    name => {}
+
+  }
+  ingredients => {
+    name1 =>
+    name2 =>
+    name3 =>
+    name4 =>
+    name5 =>
+  }
+
+} -->

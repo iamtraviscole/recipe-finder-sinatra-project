@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   end
 
   get '/recipes/new' do
-
+    @ingredients = Ingredient.all
     erb :"recipes/new"
   end
 
@@ -20,7 +20,18 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do #new recipe form action
+    @recipe = Recipe.new(params[:recipe])
 
+    if !params[:ingredients].empty?
+      params[:ingredients].each do |ingredient_name|
+        @recipe.ingredients << Ingredient.create(name: ingredient_name)
+      end
+
+    end
+
+    @recipe.save
+    current_user.recipes << @recipe
+    current_user.ingredients << @recipe.ingredients
     redirect "/recipes/#{@recipe.id}"
   end
 
