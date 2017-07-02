@@ -1,16 +1,19 @@
 class IngredientsController < ApplicationController
 
   get '/ingredients' do
+    redirect_if_not_logged_in
     @ingredients = Ingredient.all
     erb :"ingredients/index"
   end
 
   get '/ingredients/new' do
+    redirect_if_not_logged_in
     @ingredients = Ingredient.all
     erb :"ingredients/new"
   end
 
   get '/ingredients/:id' do
+    redirect_if_not_logged_in
     @ingredient = Ingredient.find_by(id: params[:id])
     erb :"ingredients/show"
   end
@@ -21,6 +24,7 @@ class IngredientsController < ApplicationController
   # end
 
   get '/ingredients/:id/delete' do
+    redirect_if_not_logged_in
     ingredient = Ingredient.find_by(id: params[:id])
     current_user.ingredients.delete(ingredient)
 
@@ -28,12 +32,13 @@ class IngredientsController < ApplicationController
   end
 
   post '/ingredients' do #new ingredient form action
+    redirect_if_not_logged_in
     params[:ingredients].each do |ingredient_name|
       if ingredient_name != ""
         current_user.ingredients << Ingredient.find_or_create_by(name: ingredient_name)
       end
     end
-    redirect "/ingredients"
+    redirect "/home"
   end
 
   # patch '/ingredients/:id' do #edit ingredient form action

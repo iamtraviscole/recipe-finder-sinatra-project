@@ -1,21 +1,25 @@
 class RecipesController < ApplicationController
 
   get '/recipes' do
+    redirect_if_not_logged_in
     @recipes = Recipe.all
     erb :"recipes/index"
   end
 
   get '/recipes/new' do
+    redirect_if_not_logged_in
     @ingredients = Ingredient.all
     erb :"recipes/new"
   end
 
   get '/recipes/:id' do
+    redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
     erb :"recipes/show"
   end
 
   get '/recipes/:id/edit' do
+    redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
     @recipe_ingredients = @recipe.ingredients
     @ingredients = Ingredient.all
@@ -23,21 +27,27 @@ class RecipesController < ApplicationController
   end
 
   post '/recipes' do #new recipe form action
-    @recipe = Recipe.new(params[:recipe])
+    redirect_if_not_logged_in
+    if params[:recipe][:name] != ""
+      @recipe = Recipe.new(params[:recipe])
 
-    params[:ingredients].each do |ingredient_name|
-      if ingredient_name != ""
-        @recipe.ingredients << Ingredient.find_or_create_by(name: ingredient_name)
+      params[:ingredients].each do |ingredient_name|
+        if ingredient_name != ""
+          @recipe.ingredients << Ingredient.find_or_create_by(name: ingredient_name)
+        end
       end
-    end
 
-    @recipe.save
-    current_user.recipes << @recipe
-    current_user.ingredients << @recipe.ingredients
-    redirect "/recipes/#{@recipe.id}"
+      @recipe.save
+      current_user.recipes << @recipe
+      current_user.ingredients << @recipe.ingredients
+      redirect "/recipes/#{@recipe.id}"
+    else
+      redirect "/recipes/new"
+    end
   end
 
   patch '/recipes/:id' do #recipe edit form action
+    redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
     @recipe.update(params[:recipe])
     @recipe.ingredients.clear

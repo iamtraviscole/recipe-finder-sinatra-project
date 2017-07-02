@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
       if logged_in?
         redirect '/home'
       else
+        flash[:message] = "You must be logged in to do that."
         erb :index
       end
     end
@@ -30,6 +31,13 @@ class ApplicationController < Sinatra::Base
 
       def format_text(text)
         text.gsub("\n", "<br>")
+      end
+
+      def redirect_if_not_logged_in
+        if !logged_in?
+          flash[:message] = "You must be logged in to do that."
+          redirect "/"
+        end
       end
 
     end
