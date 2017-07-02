@@ -13,7 +13,7 @@
   <h3><label for="recipe_ingredients">Select Ingredients</label></h3>
   <ul>
   <% @ingredients.each do |ingredient| %>
-    <li><input type="checkbox" name="recipe[ingredients][]" id="recipe_ingredients" value="<%=ingredient.id%>"><%= ingredient.name %></li>
+    <li><input type="checkbox" name="ingredients[]" id="recipe_ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li>
   <% end %>
   </ul>
 
@@ -26,24 +26,8 @@
   <input type="text" name="ingredients[]">
 
   <h3><label for="recipe_instructions">Instructions</label></h3>
-  <textarea rows="10" cols="30" name="instructions" id="recipe_instructions"></textarea>
+  <textarea rows="10" cols="30" name="recipe[instructions]" id="recipe_instructions"></textarea>
 
   <br>
   <input type="submit" value="Create New Recipe">
 </form>
-
-
-<!-- params = {
-  recipe => {
-    name => {}
-
-  }
-  ingredients => {
-    name1 =>
-    name2 =>
-    name3 =>
-    name4 =>
-    name5 =>
-  }
-
-} -->

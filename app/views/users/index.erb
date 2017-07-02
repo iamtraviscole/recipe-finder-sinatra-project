@@ -1,13 +1,20 @@
 <h1>Your Recipes</h1>
 <ul>
 <%@user_recipes.each do |user_recipe|%>
-  <li><a href="/recipes/<%=user_recipe.id%>/edit">user_recipe</a></li>
+  <li><a href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> <a href="/recipes/<%=user_recipe.id%>/edit">edit</a></li>
 <%end%>
 </ul>
+
+<a href="/recipes/new">Add Recipe</a>
 
 <h1>Your Ingredients</h1>
 <ul>
 <%@user_ingredients.each do |user_ingredient|%>
-  <li><a href="/ingredients/<%=user_ingredient.id%>/edit">user_ingredient</a></li>
+  <li><%=user_ingredient.name%> <a href="/ingredients/<%=user_ingredient.id%>/delete">x</a></li>
 <%end%>
 </ul>
+
+<a href="/ingredients/new">Add Ingredients</a>
+<br>
+<br>
+<a href="/logout">Log Out</a>

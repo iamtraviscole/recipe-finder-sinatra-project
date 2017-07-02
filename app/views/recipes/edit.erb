@@ -1,14 +1,38 @@
 <h1>Edit <%=@recipe.name%></h1>
 
 <form action="/recipes/<%=@recipe.id%>" method="post">
-  <label for="recipe_name"></label>
-  <input type="text" name="name" id="recipe_name" value="<%=@recipe.name%>">
-  <label for="recipe_difficulty"></label>
-  <input type="text" name="difficulty" id="recipe_difficulty" value="<%=@recipe.difficulty%>">
-  <label for="recipe_instructions"></label>
-  <input type="text" name="instructions" id="recipe_instructions" value="<%=@recipe.instructions%>">
-  <label for="recipe_cook_time"></label>
-  <input type="number" name="cook_time" id="recipe_cook_time" value="<%=@recipe.cook_time%>">
+<input type="hidden" name="_method" value="patch">
+  <h3><label for="recipe_name">Name</label></h3>
+  <input type="text" name="recipe[name]" id="recipe_name" value="<%=@recipe.name%>">
+
+  <h3><label for="recipe_difficulty">Difficulty</label></h3>
+  <input type="text" name="recipe[difficulty]" id="recipe_difficulty" value="<%=@recipe.difficulty%>">
+
+  <h3><label for="recipe_cook_time">Cook Time (in minutes)</label></h3>
+  <input type="number" name="recipe[cook_time]" id="recipe_cook_time" value="<%=@recipe.cook_time%>">
+
+  <h3><label for="recipe_ingredients">Ingredients</label></h3>
+  <ul>
+  <% @ingredients.each do |ingredient| %>
+    <% if @recipe_ingredients.include?(ingredient) %>
+      <li><input type="checkbox" name="ingredients[]" id="recipe_ingredients" value="<%=ingredient.name%>" checked><%= ingredient.name %></li>
+    <% else %>
+      <li><input type="checkbox" name="ingredients[]" id="recipe_ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li>
+    <% end %>
+  <% end %>
+  </ul>
+
+  <h3>And/or, Create New Ingredients</h3>
+  <label for="recipe_create_ingredients">Names:</label>
+  <input type="text" name="ingredients[]" id="recipe_create_ingredients">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+
+  <h3><label for="recipe_instructions">Instructions</label></h3>
+  <textarea rows="10" cols="30" name="recipe[instructions]" id="recipe_instructions"><%=@recipe.instructions%></textarea>
+
   <br>
   <input type="submit" value="Edit Recipe">
 </form>

@@ -1,7 +1,24 @@
-<h1>Add Ingredients</h1>
-<form action="/ingredients" method="post">
-  <label for="ingredient_name"></label>
-  <input type="text" name="name" id="ingredient_name">
+<h1>Ingredients</h1>
+
+<h3><label for="ingredients">Select From Ingredients Others Have Added</label></h3>
+
+<form class="" action="/ingredients" method="post">
+
+  <ul>
+  <% @ingredients.each do |ingredient| %>
+    <li><input type="checkbox" name="ingredients[]" id="ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li>
+  <% end %>
+  </ul>
+
+  <h3>And/or, Create New Ingredients</h3>
+  <label for="create_ingredients">Names:</label>
+  <input type="text" name="ingredients[]" id="create_ingredients">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+  <input type="text" name="ingredients[]">
+
   <br>
-  <input type="submit value="Add Ingredient">
+  <input type="submit" value="Add To Your Ingredients">
+
 </form>

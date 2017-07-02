@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/' do
-      erb :index
+      if logged_in?
+        redirect '/home'
+      else
+        erb :index
+      end
     end
 
     helpers do
@@ -24,7 +28,8 @@ class ApplicationController < Sinatra::Base
         !!current_user
       end
 
-      def redirect_if_not_logged_in
+      def format_text(text)
+        text.gsub("\n", "<br>")
       end
 
     end

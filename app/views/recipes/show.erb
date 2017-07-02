@@ -1,14 +1,14 @@
-<h1><%=@recipe.name%></h1>
+<h1><%= @recipe.name %></h1>
 
 <h2>Difficulty</h2>
-<p><%=@recipe.difficulty%></p>
+<p><%= @recipe.difficulty %></p>
 <h2>Cook Time</h2>
-<p><%=@recipe.cook_time%></p>
+<p><%= @recipe.cook_time %> mins</p>
 <h2>Ingredients</h2>
 <ul>
-<%@recipe.ingredients.each do |ingredient|%>
-  <li><%=ingredient%></li>
-<%end%>
+<% @recipe.ingredients.each do |ingredient| %>
+  <li><%= ingredient.name %></li>
+<% end %>
 </ul>
 <h2>Instructions</h2>
-<p><%=@recipe.instructions%></p>
+<p><%= format_text(@recipe.instructions) %></p>
