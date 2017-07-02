@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect "/home"
       else
-        flash[:message] = @user.errors.full_messages
+        flash[:message] = "Invalid name, email, or password"
         redirect "/"
       end
   end

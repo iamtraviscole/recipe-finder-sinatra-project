@@ -26,9 +26,13 @@ class IngredientsController < ApplicationController
   get '/ingredients/:id/delete' do
     redirect_if_not_logged_in
     ingredient = Ingredient.find_by(id: params[:id])
-    current_user.ingredients.delete(ingredient)
-
-    redirect "/home"
+    if current_user.ingredients.ids.include?(ingredient.id)
+      current_user.ingredients.delete(ingredient)
+      redirect "/home"
+    else
+      flash[:message] = "You can only delete your own ingredients."
+      redirect "/home"
+    end
   end
 
   post '/ingredients' do #new ingredient form action

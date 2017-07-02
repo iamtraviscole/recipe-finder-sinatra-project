@@ -1,17 +1,25 @@
 <h1>Your Recipes</h1>
 <ul>
-<%@user_recipes.each do |user_recipe|%>
-  <li><a href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> <a href="/recipes/<%=user_recipe.id%>/edit">edit</a></li>
-<%end%>
+  <% if @user_ingredients.empty? %>
+    <li>You haven't added any recipes yet!</li>
+  <% else %>
+    <%@user_recipes.each do |user_recipe|%>
+      <li><a href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> <a href="/recipes/<%=user_recipe.id%>/edit">edit</a></li>
+    <%end%>
+  <% end %>
 </ul>
 
 <a href="/recipes/new">Add Recipe</a>
 
 <h1>Your Ingredients</h1>
 <ul>
-<%@user_ingredients.each do |user_ingredient|%>
-  <li><%=user_ingredient.name%> <a href="/ingredients/<%=user_ingredient.id%>/delete">x</a></li>
-<%end%>
+  <% if @user_ingredients.empty? %>
+    <li>You haven't added any ingredients yet!</li>
+  <% else %>
+    <%@user_ingredients.each do |user_ingredient|%>
+      <li><%=user_ingredient.name%> <a href="/ingredients/<%=user_ingredient.id%>/delete">x</a></li>
+    <%end%>
+  <% end %>
 </ul>
 
 <a href="/ingredients/new">Add Ingredients</a>
