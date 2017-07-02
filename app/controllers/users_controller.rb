@@ -39,13 +39,14 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do #signup form action
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
-      redirect "/"
-    else
-      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-      session[:user_id] = @user.id
-      redirect "/home"
-    end
+    @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      if @user.valid?
+        session[:user_id] = @user.id
+        redirect "/home"
+      else
+        flash[:message] = @user.errors.full_messages
+        redirect "/"
+      end
   end
 
   post '/login' do #login form action

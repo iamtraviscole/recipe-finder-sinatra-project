@@ -14,7 +14,6 @@ class ApplicationController < Sinatra::Base
       if logged_in?
         redirect '/home'
       else
-        flash[:message] = "You must be logged in to do that."
         erb :index
       end
     end
