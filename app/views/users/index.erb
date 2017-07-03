@@ -1,6 +1,6 @@
 <h1>Your Recipes</h1>
 <ul>
-  <% if @user_ingredients.empty? %>
+  <% if @user_recipes.empty? %>
     <li>You haven't added any recipes yet!</li>
   <% else %>
     <%@user_recipes.each do |user_recipe|%>

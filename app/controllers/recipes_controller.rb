@@ -1,24 +1,24 @@
 class RecipesController < ApplicationController
 
-  get '/recipes' do
+  get '/recipes' do #all recipes
     redirect_if_not_logged_in
     @recipes = Recipe.all
     erb :"recipes/index"
   end
 
-  get '/recipes/new' do
+  get '/recipes/new' do #new recipe
     redirect_if_not_logged_in
     @ingredients = Ingredient.all
     erb :"recipes/new"
   end
 
-  get '/recipes/:id' do
+  get '/recipes/:id' do #show recipe
     redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
     erb :"recipes/show"
   end
 
-  get '/recipes/:id/edit' do
+  get '/recipes/:id/edit' do #edit recipe form
     redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
     @recipe_ingredients = @recipe.ingredients
@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
     erb :"recipes/edit"
   end
 
-  get '/recipes/:id/delete' do
+  get '/recipes/:id/delete' do #delete recipe
     redirect_if_not_logged_in
     this_recipe = Recipe.find_by(id: params[:id])
     if current_user.recipes.ids.include?(this_recipe.id)
@@ -51,9 +51,9 @@ class RecipesController < ApplicationController
 
       @recipe.save
       current_user.recipes << @recipe
-      current_user.ingredients << @recipe.ingredients
       redirect "/recipes/#{@recipe.id}"
     else
+      flash[:message] = "Recipe name required."
       redirect "/recipes/new"
     end
   end

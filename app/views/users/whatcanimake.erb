@@ -1,0 +1,9 @@
+<h1> You Can Make </h1>
+
+<% if @you_can_make %>
+  <% @you_can_make.each do |key_id, recipe| %>
+    <a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a>
+  <% end %>
+<% else %>
+  You can't make anything
+<% end %>

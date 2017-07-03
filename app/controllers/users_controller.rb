@@ -28,6 +28,34 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/what-can-i-make' do
+    redirect_if_not_logged_in
+    if current_user.ingredients.ids.size >= 1
+      user_ingredients_ids = current_user.ingredients.ids
+
+      user_recipes = current_user.recipes
+
+      user_recipe_ids = {}
+
+      user_recipes.each do |recipe|
+        user_recipe_ids["#{recipe.id}"] = recipe.ingredients.ids
+      end
+
+      @you_can_make = {}
+
+      user_recipe_ids.each do |key, value|
+        user_recipe_ids_intersection = user_ingredients_ids & value
+
+        if user_ingredients_ids.size == user_recipe_ids_intersection.size
+          @you_can_make["#{key}"] = Recipe.find_by(id: key)
+        end
+
+      end
+    end
+
+    erb :"users/whatcanimake"
+  end
+
   get '/logout' do #user logout link/button
     if session[:user_id] != nil
       session.clear
