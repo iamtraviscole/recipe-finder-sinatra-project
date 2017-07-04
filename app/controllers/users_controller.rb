@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     if logged_in?
       @user_recipes = current_user.recipes
       @user_ingredients = current_user.ingredients
+      @home_active = true
       erb :"users/index"
     else
       redirect "/"

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Recipe Organizer</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row row-grey">
+        <ul class="nav nav-pills">
+          <li role="navigation" class="<%= 'active' if @home_active == true %>"><a href="/home">Home</a></li>
+          <li role="navigation" class="<%= 'active' if @new_ing_active == true %>"><a href="/ingredients/new">Add Ingredients</a></li>
+          <li role="navigation" class="<%= 'active' if @new_rec_active == true %>"><a href="/recipes/new">Add Recipes</a></li>
+          <li class="pull-right" role="navigation"><a href="/logout">Log Out</a></li>
+        </ul>
+      </div>
+
+      <div class="row">
+
+        <%= yield %>
+
+      </div>
+
+    </div>
+
+    <div class="footer navbar-fixed-bottom">
+      <div class="row row-foot">
+        <ul class="nav nav-pills">
+          <li role="navigation" class="nav_foot"><a href="/ingredients">All Ingredients</a></li>
+          <li role="navigation" class="nav_foot"><a href="/recipes">All Recipes</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>

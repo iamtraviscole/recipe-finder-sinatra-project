@@ -1,0 +1,26 @@
+.row-grey {
+  background-color: #eee;
+  padding: 15px;
+}
+
+.row-foot {
+  background-color: #eee;
+  padding-left: 15px;
+}
+
+.nav_foot a {
+  color: #666;
+  font-size: .9em;
+}
+
+.row-grey .nav li a {
+  color: black;
+}
+
+.row-grey .nav li.active a,
+.row-grey .nav li.active a:hover,
+.row-grey .nav li.active a:focus,
+.row-grey .nav li a:hover,
+.row-grey .nav li a:focus {
+    background-color: #a9ea8c;
+}
