@@ -1,28 +1,35 @@
-<h1>Your Recipes</h1>
-<ul>
-  <% if @user_recipes.empty? %>
-    <li>You haven't added any recipes yet!</li>
-  <% else %>
-    <%@user_recipes.each do |user_recipe|%>
-      <li><a href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> <a href="/recipes/<%=user_recipe.id%>/edit">edit</a></li>
-    <%end%>
-  <% end %>
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class="grey-bg">Your Recipes</h1>
+      <ul class="no-style">
+        <% if @user_recipes.empty? %>
+          <li>You haven't added any recipes yet!</li>
+        <% else %>
+          <%@user_recipes.each do |user_recipe|%>
+            <li class="bigger-list"><a class="black-link" href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> &nbsp;<a href="/recipes/<%=user_recipe.id%>/edit"><span class="glyphicon glyphicon-edit"></span></a></li>
+          <%end%>
+        <% end %>
+      </ul>
 
-<a href="/recipes/new">Add Recipe</a>
+      <a class="btn btn-default" href="/recipes/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add Recipes</a>
+    </div>
 
-<h1>Your Ingredients</h1>
-<ul>
-  <% if @user_ingredients.empty? %>
-    <li>You haven't added any ingredients yet!</li>
-  <% else %>
-    <%@user_ingredients.each do |user_ingredient|%>
-      <li><%=user_ingredient.name%> <a href="/ingredients/<%=user_ingredient.id%>/delete">x</a></li>
-    <%end%>
-  <% end %>
-</ul>
+    <div class="col-md-4">
+      <h1 class="grey-bg">Your Ingredients</h1>
+      <ul class="no-style">
+        <% if @user_ingredients.empty? %>
+          <li>You haven't added any ingredients yet!</li>
+        <% else %>
+          <%@user_ingredients.each do |user_ingredient|%>
+            <li class="bigger-list"><%=user_ingredient.name%> &nbsp;<a href="/ingredients/<%=user_ingredient.id%>/delete"><span class="glyphicon glyphicon-remove-circle red-icon"></span></a></li>
+          <%end%>
+        <% end %>
+      </ul>
 
-<a href="/ingredients/new">Add Ingredients</a>
-<br>
-<br>
-<a href="/logout">Log Out</a>
+      <a class="btn btn-default" href="/ingredients/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add Ingredients</a>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
