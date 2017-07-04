@@ -52,7 +52,7 @@ class RecipesController < ApplicationController
 
       @recipe.save
       current_user.recipes << @recipe
-      redirect "/recipes/#{@recipe.id}"
+      redirect "/home"
     else
       flash[:message] = "Recipe name required."
       redirect "/recipes/new"
