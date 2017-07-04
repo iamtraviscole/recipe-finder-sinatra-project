@@ -1,7 +1,17 @@
-<h1>All Ingredients</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class="grey-bg">All Ingredients</h1>
 
-<ul>
-<%@ingredients.each do |ingredient|%>
-  <li><%=ingredient.name%></li>
-<%end%>
-</ul>
+      <ul class="no-style-spaced">
+      <%@ingredients.each do |ingredient|%>
+        <li><%=ingredient.name%></li>
+      <%end%>
+      </ul>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>

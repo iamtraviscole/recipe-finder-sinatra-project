@@ -1,24 +1,58 @@
-<h1>Ingredients</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="grey-bg">Add Ingredients</h1>
+    </div>
+  </div>
 
-<h3><label for="ingredients">Select From Ingredients Others Have Added</label></h3>
+  <div class="row">
+    <div class="col-md-4">
+      <form action="/ingredients" method="post">
+        <h3>Select from existing ingredients</h3>
+        <ul class="no-style">
+        <% @ingredients.each do |ingredient| %>
+        <div class="checkbox">
+            <label><li class="bigger-list"><input type="checkbox" name="ingredients[]" id="ingredients" value="<%=ingredient.name%>"> <%= ingredient.name %></li></label>
+        </div>
+        <% end %>
+      </ul>
 
-<form class="" action="/ingredients" method="post">
+      <input type="submit" class="btn btn-default" value="Add To Your Ingredients">
+    </div>
 
-  <ul>
-  <% @ingredients.each do |ingredient| %>
-    <li><input type="checkbox" name="ingredients[]" id="ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li>
-  <% end %>
-  </ul>
+    <div class="col-md-4">
+        <h3>And/or, create new ingredients</h3>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control" placeholder="Ingredient name">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" id="create_ingredients" class="form-control">
+        </div>
 
-  <h3>And/or, Create New Ingredients</h3>
-  <label for="create_ingredients">Names:</label>
-  <input type="text" name="ingredients[]" id="create_ingredients">
-  <input type="text" name="ingredients[]">
-  <input type="text" name="ingredients[]">
-  <input type="text" name="ingredients[]">
-  <input type="text" name="ingredients[]">
+        <input type="submit" class="btn btn-default" value="Add To Your Ingredients">
+      </form>
+    </div>
 
-  <br>
-  <input type="submit" value="Add To Your Ingredients">
+    <div class="col-md-4">
+    </div>
 
-</form>
+  </div>
+</div>

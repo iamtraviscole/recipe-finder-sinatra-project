@@ -1,7 +1,17 @@
-<h1>All Recipes</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h1 class="grey-bg">All Recipes</h1>
 
-<ul>
-<%@recipes.each do |recipe|%>
-  <li><a href="/recipes/<%=recipe.id%>"><%=recipe.name%></a></li>
-<%end%>
-</ul>
+      <ul class="no-style-spaced">
+      <%@recipes.each do |recipe|%>
+        <li><a href="/recipes/<%=recipe.id%>"><%=recipe.name%></a></li>
+      <%end%>
+      </ul>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
