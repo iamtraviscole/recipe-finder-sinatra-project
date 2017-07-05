@@ -32,22 +32,35 @@ class UsersController < ApplicationController
   get '/what-can-i-make' do
     redirect_if_not_logged_in
     if current_user.ingredients.ids.size >= 1
-      user_ingredients_ids = current_user.ingredients.ids
-      user_recipes = current_user.recipes
+      user_ingredients_ids = current_user.ingredients.ids.uniq
+      user_recipes = Recipe.all
 
-      user_recipe_ids = {}
+      user_recipe_ingredient_ids = {}
 
       user_recipes.each do |recipe|
-        user_recipe_ids["#{recipe.id}"] = recipe.ingredients.ids
+        user_recipe_ingredient_ids["#{recipe.id}"] = recipe.ingredients.ids
       end
 
       @you_can_make = {}
+      @you_can_almost_make = {}
 
-      user_recipe_ids.each do |key, value|
-        user_recipe_ids_intersection = user_ingredients_ids & value
+      user_recipe_ingredient_ids.each do |recipe_id, ingredient_ids|
+        user_recipe_ids_intersection = user_ingredients_ids & ingredient_ids
 
-        if user_ingredients_ids.size == user_recipe_ids_intersection.size
-          @you_can_make["#{key}"] = Recipe.find_by(id: key)
+        if ingredient_ids.size == user_recipe_ids_intersection.size && ingredient_ids.size >= 1
+          @you_can_make["#{recipe_id}"] = Recipe.find_by(id: recipe_id)
+        elsif ingredient_ids.size - 2 || ingredient_ids.size - 1 == user_recipe_ids_intersection.size
+          if ingredient_ids.size >= 1 && user_recipe_ids_intersection.size >= 1 then ingredient_ids_needed = ingredient_ids - user_recipe_ids_intersection | user_recipe_ids_intersection - ingredient_ids
+            ingredient_ids_needed.each do |id|
+              if @you_can_almost_make["#{recipe_id}"]
+                @you_can_almost_make["#{recipe_id}"] << Ingredient.find_by(id: id)
+              else
+                @you_can_almost_make["#{recipe_id}"] = Array.new
+                @you_can_almost_make["#{recipe_id}"] << Ingredient.find_by(id: id)
+
+              end
+            end
+          end
         end
 
       end
