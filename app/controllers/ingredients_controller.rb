@@ -24,6 +24,7 @@ class IngredientsController < ApplicationController
     ingredient = Ingredient.find_by(id: params[:id])
     if current_user.ingredients.ids.include?(ingredient.id)
       current_user.ingredients.delete(ingredient)
+      flash[:message] = "Ingredient deleted."
       redirect "/home"
     else
       flash[:message] = "You can only delete your own ingredients."

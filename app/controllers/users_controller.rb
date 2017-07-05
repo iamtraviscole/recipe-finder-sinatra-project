@@ -33,7 +33,6 @@ class UsersController < ApplicationController
     redirect_if_not_logged_in
     if current_user.ingredients.ids.size >= 1
       user_ingredients_ids = current_user.ingredients.ids
-
       user_recipes = current_user.recipes
 
       user_recipe_ids = {}
@@ -53,7 +52,6 @@ class UsersController < ApplicationController
 
       end
     end
-
     erb :"users/whatcanimake"
   end
 

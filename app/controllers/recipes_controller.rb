@@ -32,6 +32,7 @@ class RecipesController < ApplicationController
     this_recipe = Recipe.find_by(id: params[:id])
     if current_user.recipes.ids.include?(this_recipe.id)
       current_user.recipes.delete(this_recipe)
+      flash[:message] = "Recipe deleted."
       redirect "/home"
     else
       flash[:message] = "You can only delete your own recipes."
@@ -73,6 +74,7 @@ class RecipesController < ApplicationController
       end
 
       @recipe.save
+      flash[:message] = "Recipe edited."
       redirect "/recipes/#{@recipe.id}"
     else
       flash[:message] = "You can only edit your own recipes."
