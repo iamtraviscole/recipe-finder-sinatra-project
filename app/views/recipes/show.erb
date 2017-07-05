@@ -1,14 +1,30 @@
-<h1><%= @recipe.name %></h1>
+<div class="container-fluid">
 
-<h2>Difficulty</h2>
-<p><%= @recipe.difficulty %></p>
-<h2>Cook Time</h2>
-<p><%= @recipe.cook_time %> mins</p>
-<h2>Ingredients</h2>
-<ul>
-<% @recipe.ingredients.each do |ingredient| %>
-  <li><%= ingredient.name %></li>
-<% end %>
-</ul>
-<h2>Instructions</h2>
-<p><%= format_text(@recipe.instructions) %></p>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="grey-bg"><%= @recipe.name %></h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Difficulty</h2>
+      <p><%= @recipe.difficulty %></p>
+      <hr>
+      <h2>Cook Time</h2>
+      <p><%= @recipe.cook_time %> mins</p>
+      <hr>
+      <h2>Ingredients</h2>
+      <ul>
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li><%= ingredient.name %></li>
+      <% end %>
+      </ul>
+      <hr>
+      <h2>Instructions</h2>
+      <p><%= format_text(@recipe.instructions) %></p>
+      <hr>
+    </div>
+  </div>
+
+</div>

@@ -1,8 +1,6 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-
-<h1>Welcome to the Recipe Tracker!</h1>
-
-<a href="/login">Log In</a>
-<a href="/signup">Sign Up</a>
+<div class="welcome-main">
+  <h1>The Kitchen Organizer</h1>
+  <br>
+  <a href="/login" class="btn btn-default"><span class="glyphicon glyphicon-user"></span>&nbsp; Log In</a>
+  <a href="/signup" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>&nbsp; Sign Up</a>
+</div>

@@ -1,10 +1,14 @@
-<h1>Log In</h1>
-
-<form action="/login" method="post">
-  <label for="user_email">Email</label>
-  <input type="text" name="email" id="user_email">
-  <label for="user_password">Password</label>
-  <input type="text" name="password" id="user_password">
-  <br>
-  <input type="submit" name="" value="Log In">
-</form>
+<div class="login-main">
+  <h1>Log In</h1>
+  <form action="/login" method="post">
+    <br>
+    <div class="form-group">
+      <input type="text" name="email" id="user_email" class="form-control" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <input type="text" name="password" id="user_password" class="form-control" placeholder="Password">
+    </div>
+    <br>
+    <input type="submit" class="btn btn-default" value="Log In">
+  </form>
+</div>

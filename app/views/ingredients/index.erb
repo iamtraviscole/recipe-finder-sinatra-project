@@ -1,11 +1,16 @@
 <div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="grey-bg">All Ingredients</h1>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-4">
-      <h1 class="grey-bg">All Ingredients</h1>
-
       <ul class="no-style-spaced">
       <%@ingredients.each do |ingredient|%>
-        <li><%=ingredient.name%></li>
+        <li class="bigger-list"><%=ingredient.name%></li>
       <%end%>
       </ul>
     </div>

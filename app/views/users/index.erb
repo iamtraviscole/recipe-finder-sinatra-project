@@ -7,7 +7,7 @@
           <li>You haven't added any recipes yet!</li>
         <% else %>
           <%@user_recipes.each do |user_recipe|%>
-            <li class="bigger-list"><a class="black-link" href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> &nbsp;<a href="/recipes/<%=user_recipe.id%>/edit"><span class="glyphicon glyphicon-edit"></span></a></li>
+            <li class="bigger-list"><a class="black-link" href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> &nbsp;<a href="/recipes/<%=user_recipe.id%>/edit"><span class="glyphicon glyphicon-edit blue-icon small"></span></a></li>
           <%end%>
         <% end %>
       </ul>

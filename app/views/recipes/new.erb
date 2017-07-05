@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
   <div class="row">
     <div class="col-md-12">
       <h1 class="grey-bg">New Recipe</h1>
@@ -7,57 +8,60 @@
 
   <div class="row">
     <div class="col-md-4">
-    <form action="/recipes" method="post">
-      <h3><label for="recipe_name">Name</label></h3>
-      <div class="form-group">
-        <input type="text" name="recipe[name]" id="recipe_name" class="form-control" placeholder="Recipe name">
-      </div>
+      <form action="/recipes" method="post">
+        <h3><label for="recipe_name">Name</label></h3>
+        <div class="form-group">
+          <input type="text" name="recipe[name]" id="recipe_name" class="form-control" placeholder="Recipe name">
+        </div>
 
-      <h3><label for="recipe_difficulty">Difficulty</label></h3>
-      <div class="form-group">
-        <input type="text" name="recipe[difficulty]" id="recipe_difficulty" class="form-control" placeholder="E.g. easy, medium, hard">
-      </div>
+        <h3><label for="recipe_difficulty">Difficulty</label></h3>
+        <div class="form-group">
+          <input type="text" name="recipe[difficulty]" id="recipe_difficulty" class="form-control" placeholder="E.g. easy, medium, hard">
+        </div>
 
-      <h3><label for="recipe_cook_time">Cook Time</label></h3>
-      <div class="form-group">
-        <input type="number" name="recipe[cook_time]" id="recipe_cook_time" class="form-control" placeholder="Time in minutes">
-      </div>
+        <h3><label for="recipe_cook_time">Cook Time</label></h3>
+        <div class="form-group">
+          <input type="number" name="recipe[cook_time]" id="recipe_cook_time" class="form-control" placeholder="Time in minutes">
+        </div>
 
-      <h3><label for="recipe_ingredients">Select ingredients</label></h3>
-      <ul class="no-style">
-      <% @ingredients.each do |ingredient| %>
-      <div class="checkbox">
-        <label><li class="bigger-list"><input type="checkbox" name="ingredients[]" id="recipe_ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li></label>
-      </div>
-      <% end %>
-      </ul>
+        <h3><label for="recipe_ingredients">Select ingredients</label></h3>
+        <ul class="no-style">
+        <% @ingredients.each do |ingredient| %>
+        <div class="checkbox">
+          <label><li class="bigger-list"><input type="checkbox" name="ingredients[]" id="recipe_ingredients" value="<%=ingredient.name%>"><%= ingredient.name %></li></label>
+        </div>
+        <% end %>
+        </ul>
 
-      <h3><label for="recipe_create_ingredients">And/or, create ingredients</label></h3>
-      <div class="form-group">
-          <input type="text" name="ingredients[]" class="form-control" placeholder="Ingredient name">
-      </div>
-      <div class="form-group">
-        <input type="text" name="ingredients[]" class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" name="ingredients[]" class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" name="ingredients[]" class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" name="ingredients[]" class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="text" name="ingredients[]" class="form-control">
-      </div>
+        <h3><label for="recipe_create_ingredients">And/or, create ingredients</label></h3>
+        <div class="form-group">
+            <input type="text" name="ingredients[]" class="form-control" placeholder="Ingredient name">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="text" name="ingredients[]" class="form-control">
+        </div>
 
 
-      <h3><label for="recipe_instructions">Instructions</label></h3>
-      <div class="form-group">
-        <textarea rows="10" name="recipe[instructions]" id="recipe_instructions" class="form-control"></textarea>
-      </div>
+        <h3><label for="recipe_instructions">Instructions</label></h3>
+        <div class="form-group">
+          <textarea rows="10" name="recipe[instructions]" id="recipe_instructions" class="form-control"></textarea>
+        </div>
 
-      <br>
-      <input type="submit" class="btn btn-default" value="Create Recipe">
-    </form>
+        <input type="submit" class="btn btn-default" value="Add To Your Recipes">
+      </form>
+    </div>
+  </div>
+
+</div>

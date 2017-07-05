@@ -1,46 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Recipe Organizer</title>
+    <title>Kitchen Organizer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
 
-    <div class="container-fluid bottom-gutter">
+      <div class="container-fluid bottom-gutter">
 
-      <div class="row row-grey">
-        <ul class="nav nav-pills">
-          <li role="navigation" class="<%= 'active' if @home_active == true %>"><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-          <li role="navigation" class="<%= 'active' if @new_ing_active == true %>"><a href="/ingredients/new"><span class="glyphicon glyphicon-plus"></span> Add Ingredients</a></li>
-          <li role="navigation" class="<%= 'active' if @new_rec_active == true %>"><a href="/recipes/new"><span class="glyphicon glyphicon-plus"></span> Add Recipe</a></li>
-          <li role="navigation" class="<%= 'active' if @what_active == true %>"><a href="/recipes/new"><span class="glyphicon glyphicon-cutlery"></span> What Can I Make?</a></li>
-          <li class="pull-right" role="navigation"><a href="/logout">Log Out</a></li>
-        </ul>
+      <% if logged_in? %>
+
+        <div class="row row-grey">
+          <ul class="nav nav-pills">
+            <li role="navigation" class="<%= 'active' if @home_active == true %>"><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li role="navigation" class="<%= 'active' if @new_ing_active == true %>"><a href="/ingredients/new"><span class="glyphicon glyphicon-plus"></span> Add Ingredients</a></li>
+            <li role="navigation" class="<%= 'active' if @new_rec_active == true %>"><a href="/recipes/new"><span class="glyphicon glyphicon-plus"></span> Add Recipe</a></li>
+            <li role="navigation" class="<%= 'active' if @what_active == true %>"><a href="/what-can-i-make"><span class="glyphicon glyphicon-cutlery"></span> What Can I Make?</a></li>
+            <li class="pull-right" role="navigation"><a href="/logout">Log Out</a></li>
+          </ul>
+        </div>
+
+        <% end %>
+
+        <div class="row row-green">
+          <div class="col-md-12">
+            <div class="flash-msg">
+            <% if flash[:message] %>
+              <span class="glyphicon glyphicon-asterisk small blue-icon"></span> <%= flash[:message] %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <%= yield %>
+
+        </div>
+
       </div>
 
-      <div class="row row-green">
-        <div class="col-md-12">
+      <% if logged_in? %>
+
+      <div class="footer navbar-fixed-bottom">
+        <div class="row row-foot">
+          <ul class="nav nav-pills">
+            <li role="navigation" class="nav_foot"><a href="/ingredients">Browse All Ingredients</a></li>
+            <li role="navigation" class="nav_foot"><a href="/recipes">Browse All Recipes</a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="row">
-
-        <%= yield %>
-
-      </div>
-
-    </div>
-
-    <div class="footer navbar-fixed-bottom">
-      <div class="row row-foot">
-        <ul class="nav nav-pills">
-          <li role="navigation" class="nav_foot"><a href="/ingredients">Browse All Ingredients</a></li>
-          <li role="navigation" class="nav_foot"><a href="/recipes">Browse All Recipes</a></li>
-        </ul>
-      </div>
-    </div>
+      <% end %>
 
   </body>
 </html>

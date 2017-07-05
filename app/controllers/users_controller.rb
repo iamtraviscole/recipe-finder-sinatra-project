@@ -73,8 +73,8 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect "/home"
       else
-        flash[:message] = "Invalid name, email, or password"
-        redirect "/"
+        flash[:message] = "Invalid name, email, or password."
+        redirect "/signup"
       end
   end
 
@@ -84,8 +84,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/home"
     else
-      flash[:message] = "Incorred email or password."
-      redirect "/"
+      flash[:message] = "Incorrect email or password."
+      redirect "/login"
     end
   end
 
