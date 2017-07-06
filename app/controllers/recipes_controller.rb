@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   get '/recipes/new' do #new recipe
     redirect_if_not_logged_in
     @ingredients = Ingredient.all
-    @new_rec_active = true
+    @new_rec_active = true #for link active status
     erb :"recipes/new"
   end
 

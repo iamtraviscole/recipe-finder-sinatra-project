@@ -1,34 +1,38 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
-      <h1 class="grey-bg>Your Recipes</h1>
-      <ul class="no-style">
-        <% if @user_recipes.empty? %>
-          <li>You haven't added any recipes yet!</li>
-        <% else %>
-          <%@user_recipes.each do |user_recipe|%>
-            <li class="bigger-list"><a class="black-link" href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> &nbsp;<a href="/recipes/<%=user_recipe.id%>/edit"><span class="glyphicon glyphicon-edit blue-icon small"></span></a></li>
-          <%end%>
-        <% end %>
-      </ul>
-
-      <a class="btn btn-default" href="/recipes/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add Recipes</a>
-    </div>
 
     <div class="col-md-4">
       <h1 class="grey-bg">Your Ingredients</h1>
       <ul class="no-style">
         <% if @user_ingredients.empty? %>
-          <li>You haven't added any ingredients yet!</li>
+          <li>You haven't added any ingredients yet! What do you have in your kitchen?</li>
         <% else %>
           <%@user_ingredients.each do |user_ingredient|%>
-            <li class="bigger-list"><%=user_ingredient.name%> &nbsp;<a href="/ingredients/<%=user_ingredient.id%>/delete"><span class="glyphicon glyphicon-remove-circle red-icon"></span></a></li>
+            <li class="bigger-list"><%=user_ingredient.name%> <a href="/ingredients/<%=user_ingredient.id%>/delete"><span title="Remove recipe" class="glyphicon glyphicon-remove-circle red-icon small"></span></a></li>
           <%end%>
         <% end %>
       </ul>
-
       <a class="btn btn-default" href="/ingredients/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add Ingredients</a>
+      <hr>
+      <p class="text-muted"><span title="Edit recipe" class="glyphicon glyphicon-remove-circle red-icon"></span> = Remove ingredient</p>
     </div>
+
+    <div class="col-md-4">
+      <h1 class="grey-bg">Your Recipes</h1>
+      <ul class="no-style">
+        <% if @user_recipes.empty? %>
+          <li>You haven't added any recipes yet!</li>
+        <% else %>
+          <%@user_recipes.each do |user_recipe|%>
+            <li class="bigger-list"><a class="black-link" href="/recipes/<%=user_recipe.id%>"><%=user_recipe.name%></a> &nbsp;<a href="/recipes/<%=user_recipe.id%>/edit"><span title="Edit recipe" class="glyphicon glyphicon-edit blue-icon small"></span></a></li>
+          <%end%>
+        <% end %>
+      </ul>
+      <a class="btn btn-default" href="/recipes/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add Recipes</a>
+      <hr>
+      <p class="text-muted"><span title="Edit recipe" class="glyphicon glyphicon-edit blue-icon small"></span> = Edit recipe</p>
+    </div>
+
     <div class="col-md-4">
     </div>
   </div>

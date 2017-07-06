@@ -8,11 +8,16 @@
 
   <div class="row">
     <div class="col-md-4">
-      <ul class="no-style-spaced">
-      <%@recipes.each do |recipe|%>
-        <li class="bigger-list"><a class="black-link" href="/recipes/<%=recipe.id%>"><%=recipe.name%></a></li>
-      <%end%>
+      <ul class="no-style">
+        <%@recipes.each do |recipe|%>
+        <% if current_user.recipes.ids.include?(recipe.id) %>
+          <li class="bigger-list"><a href="/recipes/<%=recipe.id%>"><%=recipe.name%></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li>
+        <% else %>
+          <li class="bigger-list"><a href="/recipes/<%=recipe.id%>"><%=recipe.name%></a></li>
+        <%end%>
+      <% end %>
       </ul>
+      <p class="text-muted"><span title="Your Recipe" class="glyphicon glyphicon-list-alt small"></span> = Your recipe</p>
     </div>
     <div class="col-md-4">
     </div>

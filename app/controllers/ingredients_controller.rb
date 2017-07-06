@@ -9,7 +9,7 @@ class IngredientsController < ApplicationController
   get '/ingredients/new' do #new ingredient form
     redirect_if_not_logged_in
     @ingredients = Ingredient.all
-    @new_ing_active = true
+    @new_ing_active = true #for link active status
     erb :"ingredients/new"
   end
 

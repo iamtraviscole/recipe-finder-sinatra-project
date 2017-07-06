@@ -1,14 +1,24 @@
 <div class="container-fluid">
 
   <div class="row">
+
     <div class="col-md-4">
       <h1 class="grey-bg">You Can Make</h1>
       <% if !@you_can_make.empty? %>
       <ul class="no-style">
         <% @you_can_make.each do |recipe_id, recipe| %>
-          <h3><li><a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a></li></h3>
-          <hr>
+          <!-- add glyphicon if current user's recipe  -->
+          <% if current_user.recipes.ids.include?(recipe_id.to_i) %>
+            <h3><li><a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li></h3>
+            <hr>
+          <% else %>
+            <h3><li><a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a></li></h3>
+            <hr>
+          <% end %>
         <% end %>
+        <br>
+        <p class="text-muted"><span title="Your Recipe" class="glyphicon glyphicon-list-alt small"></span> = Your recipe</p>
+      </ul>
       <% else %>
         <p> You don't have enough ingredients to make anything! </p>
         <a class="btn btn-default btn-sm" href="/ingredients/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add More Ingredients</a>
@@ -17,15 +27,26 @@
 
     <div class="col-md-4">
       <h1 class="grey-bg">You Can Almost Make</h1>
+
       <% if !@you_can_almost_make.empty? %>
         <ul class="no-style">
           <% @you_can_almost_make.each do |recipe_id, ingredient_ids| %>
-            <h3><li><a href="/recipes/<%=Recipe.find_by(id: recipe_id).id%>"><%= Recipe.find_by(id: recipe_id).name %></a></li></h3>
-            <h4>You just need:</h4>
-            <% ingredient_ids.each do |id| %>
-              <li><%= Ingredient.find_by(id: id).name %></li>
+            <!-- add glyphicon if current user's recipe  -->
+            <% if current_user.recipes.ids.include?(recipe_id.to_i) %>
+              <h3><li><a href="/recipes/<%=Recipe.find_by(id: recipe_id).id%>"><%= Recipe.find_by(id: recipe_id).name %></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li></h3>
+              <h4>You just need:</h4>
+              <% ingredient_ids.each do |id| %>
+                <li><%= Ingredient.find_by(id: id).name %></li>
+              <% end %>
+              <hr>
+            <% else %>
+              <h3><li><a href="/recipes/<%=Recipe.find_by(id: recipe_id).id%>"><%= Recipe.find_by(id: recipe_id).name %></a></li></h3>
+              <h4>You just need:</h4>
+              <% ingredient_ids.each do |id| %>
+                <li><%= Ingredient.find_by(id: id).name %></li>
+              <% end %>
+              <hr>
             <% end %>
-            <hr>
           <% end %>
         </ul>
 
@@ -33,7 +54,12 @@
         <p> You don't have enough ingredients to make anything! </p>
         <a class="btn btn-default btn-sm" href="/ingredients/new" role="button"><span class="glyphicon glyphicon-plus"></span> Add More Ingredients</a>
       <% end %>
+
     </div>
+
+    <div class="col-md-4">
+    </div>
+
   </div>
 
 </div>
