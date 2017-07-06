@@ -57,7 +57,7 @@
 
         <h3><label for="recipe_instructions">Instructions</label></h3>
         <div class="form-group">
-          <textarea rows="10" name="recipe[instructions]" id="recipe_instructions" class="form-control"></textarea>
+          <textarea rows="10" name="recipe[instructions]" id="recipe_instructions" class="form-control"><%=@recipe.instructions%></textarea>
         </div>
 
         <input type="submit" class="btn btn-default" value="Edit Recipe">

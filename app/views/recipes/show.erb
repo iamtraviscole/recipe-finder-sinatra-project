@@ -25,7 +25,7 @@
       <p><%= format_text(@recipe.instructions) %></p>
       <hr>
       <% if current_user.recipes.ids.include?(@recipe.id) %>
-        <input type="submit" class="btn btn-default" value="Edit Recipe">
+        <a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-default">Edit Recipe</a>
       <% end %>
     </div>
   </div>
