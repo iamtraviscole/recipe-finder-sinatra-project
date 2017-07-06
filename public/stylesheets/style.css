@@ -111,11 +111,11 @@
 
 .welcome-main {
   width:350px;
-  height:220px;
+  height:180px;
   position:absolute;
   left:50%;
   top:50%;
-  margin:-110px 0 0 -200px;
+  margin:-90px 0 0 -200px;
   text-align: center;
   background-color: #a9ea8c;
   border-radius: 5px;
