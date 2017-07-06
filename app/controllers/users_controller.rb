@@ -32,6 +32,9 @@ class UsersController < ApplicationController
   get '/what-can-i-make' do
     redirect_if_not_logged_in
     @what_active = true #for link active status
+
+    @you_can_make = {}
+    @you_can_almost_make = {}
     if current_user.ingredients.ids.size >= 1
       user_ingredients_ids = current_user.ingredients.ids.uniq
 
@@ -40,9 +43,6 @@ class UsersController < ApplicationController
       Recipe.all.each do |recipe|
         user_recipe_ingredient_ids["#{recipe.id}"] = recipe.ingredients.ids
       end
-
-      @you_can_make = {}
-      @you_can_almost_make = {}
 
       user_recipe_ingredient_ids.each do |recipe_id, ingredient_ids|
         user_recipe_ids_intersection = user_ingredients_ids & ingredient_ids #user ingredients that match recipe ingredients
