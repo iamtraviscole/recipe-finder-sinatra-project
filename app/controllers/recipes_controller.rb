@@ -22,9 +22,14 @@ class RecipesController < ApplicationController
   get '/recipes/:id/edit' do #edit recipe form
     redirect_if_not_logged_in
     @recipe = Recipe.find_by(id: params[:id])
-    @recipe_ingredients = @recipe.ingredients
-    @ingredients = Ingredient.all
-    erb :"recipes/edit"
+    if @recipe && @recipe.user == current_user
+      @recipe_ingredients = @recipe.ingredients
+      @ingredients = Ingredient.all
+      erb :"recipes/edit"
+    else
+      flash[:message] = "You can only edit your own recipes."
+      redirect to '/home'
+    end
   end
 
   get '/recipes/:id/delete' do #delete recipe

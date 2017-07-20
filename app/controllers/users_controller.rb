@@ -32,36 +32,7 @@ class UsersController < ApplicationController
   get '/what-can-i-make' do
     redirect_if_not_logged_in
     @what_active = true #for link active status
-
-    @you_can_make = {}
-    @you_can_almost_make = {}
-    if current_user.ingredients.ids.size >= 1
-      user_ingredients_ids = current_user.ingredients.ids.uniq
-
-      user_recipe_ingredient_ids = {}
-
-      Recipe.all.each do |recipe|
-        user_recipe_ingredient_ids["#{recipe.id}"] = recipe.ingredients.ids
-      end
-
-      user_recipe_ingredient_ids.each do |recipe_id, ingredient_ids|
-        user_recipe_ids_intersection = user_ingredients_ids & ingredient_ids #user ingredients that match recipe ingredients
-        if ingredient_ids.size == user_recipe_ids_intersection.size && ingredient_ids.size >= 1
-          @you_can_make["#{recipe_id}"] = Recipe.find_by(id: recipe_id) #adds recipe to hash with recipe id as key
-        elsif ingredient_ids.size - 2 == user_recipe_ids_intersection.size || ingredient_ids.size - 1 == user_recipe_ids_intersection.size
-          if ingredient_ids.size >= 1 && user_recipe_ids_intersection.size >= 1 then ingredient_ids_needed = ingredient_ids - user_recipe_ids_intersection | user_recipe_ids_intersection - ingredient_ids
-            ingredient_ids_needed.each do |id| #add ingredient ids to array with key of recipe id
-              if @you_can_almost_make["#{recipe_id}"]
-                @you_can_almost_make["#{recipe_id}"] << Ingredient.find_by(id: id)
-              else
-                @you_can_almost_make["#{recipe_id}"] = Array.new
-                @you_can_almost_make["#{recipe_id}"] << Ingredient.find_by(id: id)
-              end
-            end
-          end
-        end
-      end
-    end
+    @recipes = current_user.what_can_i_make
     erb :"users/whatcanimake"
   end
 

@@ -4,11 +4,12 @@
 
     <div class="col-md-4">
       <h1 class="grey-bg">You Can Make</h1>
-      <% if !@you_can_make.empty? %>
+
+      <% if !@recipes[:you_can_make].empty? %>
       <ul class="no-style">
-        <% @you_can_make.each do |recipe_id, recipe| %>
+        <% @recipes[:you_can_make].each do |recipe| %>
           <!-- add glyphicon if current user's recipe  -->
-          <% if current_user.recipes.ids.include?(recipe_id.to_i) %>
+          <% if current_user.recipes.ids.include?(recipe.id.to_i) %>
             <h3><li><a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li></h3>
             <hr>
           <% else %>
@@ -28,26 +29,26 @@
     <div class="col-md-4">
       <h1 class="grey-bg">You Can Almost Make</h1>
 
-      <% if !@you_can_almost_make.empty? %>
+      <% if !@recipes[:you_can_almost_make].empty? %>
         <ul class="no-style">
-          <% @you_can_almost_make.each do |recipe_id, ingredient_ids| %>
-            <!-- add glyphicon if current user's recipe  -->
-            <% if current_user.recipes.ids.include?(recipe_id.to_i) %>
-              <h3><li><a href="/recipes/<%=Recipe.find_by(id: recipe_id).id%>"><%= Recipe.find_by(id: recipe_id).name %></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li></h3>
-              <h4>You just need:</h4>
-              <% ingredient_ids.each do |id| %>
-                <li><%= Ingredient.find_by(id: id).name %></li>
+          <% @recipes[:you_can_almost_make].each do |recipe_hash| %>
+              <!-- add glyphicon if current user's recipe  -->
+              <% if current_user.recipes.include?(recipe_hash[:recipe].id) %>
+                <h3><li><a href="/recipes/<%=recipe_hash[:recipe].id%>"><%= recipe_hash[:recipe].name %></a> <span title="Your recipe" class="glyphicon glyphicon-list-alt small"></span></li></h3>
+                <h4>You just need:</h4>
+                <% recipe_hash[:needed_ingredients].each do |ingredient| %>
+                  <li><%= ingredient.name %></li>
+                <% end %>
+                <hr>
+              <% else %>
+                <h3><li><a href="/recipes/<%=recipe_hash[:recipe].id%>"><%= recipe_hash[:recipe].name %></a></li></h3>
+                <h4>You just need:</h4>
+                <% recipe_hash[:needed_ingredients].each do |ingredient| %>
+                  <li><%= ingredient.name %></li>
+                <% end %>
+                <hr>
               <% end %>
-              <hr>
-            <% else %>
-              <h3><li><a href="/recipes/<%=Recipe.find_by(id: recipe_id).id%>"><%= Recipe.find_by(id: recipe_id).name %></a></li></h3>
-              <h4>You just need:</h4>
-              <% ingredient_ids.each do |id| %>
-                <li><%= Ingredient.find_by(id: id).name %></li>
-              <% end %>
-              <hr>
             <% end %>
-          <% end %>
         </ul>
 
       <% else %>
